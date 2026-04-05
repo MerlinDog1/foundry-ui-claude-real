@@ -1,0 +1,21 @@
+:root{--bg:#0b0b10;--card:#12121a;--text:#f2f2f7;--muted:#a1a1b5;--line:#2a2a37;--accent:#7c5cff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#1a1530,transparent 30%),var(--bg);color:var(--text);font:15px/1.45 system-ui,sans-serif}
+.shell{max-width:960px;margin:0 auto;padding:14px;display:grid;gap:12px}
+header h1{margin:.2rem 0}header p{margin:0;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+label{display:block;color:#d1d1dc;margin:.5rem 0 .35rem}
+textarea,input[type=file]{width:100%;background:#0f0f16;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:.7rem}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+button,a.ghost{border:1px solid var(--line);background:#191923;color:var(--text);padding:.6rem .9rem;border-radius:10px;text-decoration:none;cursor:pointer}
+button.primary{background:var(--accent);border-color:transparent}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chips button.active{background:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.style{border:1px solid var(--line);border-radius:10px;padding:6px;cursor:pointer}.style.active{outline:2px solid var(--accent)}
+.style img{width:100%;height:90px;object-fit:cover;border-radius:8px}.style small{display:block;text-align:center;margin-top:4px;color:#c7c7d1}
+.progressWrap{height:8px;background:#0f0f16;border-radius:999px;border:1px solid var(--line);overflow:hidden}
+#progress{height:100%;width:0;background:linear-gradient(90deg,#5ef,#7c5cff)}
+.previews{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+figure{margin:0}figcaption{color:var(--muted);font-size:.8rem;margin-bottom:3px}figure img{width:100%;height:130px;object-fit:contain;background:#0f0f16;border:1px solid var(--line);border-radius:10px}
+.library{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.lib{border:1px solid var(--line);padding:8px;border-radius:10px}.lib img{width:100%;height:100px;object-fit:cover;border-radius:8px}
+.hidden{display:none}.toggles{display:flex;gap:14px;flex-wrap:wrap}
+@media (min-width:760px){.grid{grid-template-columns:repeat(4,1fr)}.previews{grid-template-columns:repeat(4,1fr)}.library{grid-template-columns:repeat(4,1fr)}}

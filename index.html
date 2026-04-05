@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Foundry UI — Real Pipeline</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <h1>Foundry UI</h1>
+      <p>Mobile-first binary art pipeline: generate → style → upscale → trace.</p>
+    </header>
+
+    <section class="card">
+      <label>Prompt</label>
+      <textarea id="prompt" rows="4" placeholder="Ancient samurai wolf beneath fractured moon, woodcut style..."></textarea>
+      <div class="row">
+        <button id="inspire" class="ghost">Inspire me</button>
+        <button id="run" class="primary">Run Pipeline</button>
+      </div>
+
+      <label>Source</label>
+      <div class="chips" id="sourceMode">
+        <button data-v="generate" class="active">Generate</button>
+        <button data-v="upload">Upload</button>
+      </div>
+      <div id="uploadBox" class="hidden">
+        <input id="file" type="file" accept="image/*" capture="environment" />
+        <button id="uploadBtn" class="ghost">Upload image</button>
+      </div>
+
+      <label>Style</label>
+      <div id="styleGrid" class="grid"></div>
+
+      <label>Aspect Ratio</label>
+      <div class="chips" id="aspect">
+        <button data-v="1:1" class="active">1:1</button><button data-v="3:2">3:2</button><button data-v="2:3">2:3</button><button data-v="16:9">16:9</button><button data-v="9:16">9:16</button>
+      </div>
+
+      <label>Resolution</label>
+      <div class="chips" id="resolution">
+        <button data-v="1K" class="active">1K</button><button data-v="2K">2K</button>
+      </div>
+
+      <label>Pipeline</label>
+      <div class="toggles">
+        <label><input type="checkbox" id="doStyle" checked /> Style</label>
+        <label><input type="checkbox" id="doUpscale" checked /> Upscale</label>
+        <label><input type="checkbox" id="doTrace" checked /> Trace</label>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Speckle</label>
+          <input id="speckle" type="range" min="2" max="8" value="4" />
+        </div>
+        <div>
+          <label>Trace format</label>
+          <div class="chips" id="traceFormat">
+            <button data-v="svg" class="active">SVG</button><button data-v="png">PNG</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="progressWrap"><div id="progress"></div></div>
+      <div id="status">Idle.</div>
+      <div class="previews">
+        <figure><figcaption>Generated</figcaption><img id="prev-generated" /></figure>
+        <figure><figcaption>Styled</figcaption><img id="prev-styled" /></figure>
+        <figure><figcaption>Upscaled</figcaption><img id="prev-upscaled" /></figure>
+        <figure><figcaption>Traced</figcaption><img id="prev-traced" /></figure>
+      </div>
+      <div class="row">
+        <a id="downloadSvg" class="ghost" href="/download/svg" download="traced.svg">Download SVG</a>
+        <a id="downloadPng" class="ghost" href="/download/png" download="traced.png">Download PNG</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row"><h3>Library</h3><button id="exportZip" class="ghost">Export ZIP</button></div>
+      <div id="library" class="library"></div>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
