@@ -57,12 +57,12 @@ def gemini_generate_image(prompt: str, aspect: str = "1:1", resolution: str = "1
 
     endpoint = (
         "https://generativelanguage.googleapis.com/v1beta/models/"
-        "gemini-2.0-flash-preview-image-generation:generateContent"
+        "gemini-3-pro-image-preview:generateContent"
         f"?key={api_key}"
     )
     payload = {
         "contents": [{"parts": [{"text": final_prompt}]}],
-        "generationConfig": {"responseModalities": ["TEXT", "IMAGE"]},
+        "generationConfig": {"temperature": 0.7},
     }
 
     req = urllib.request.Request(
@@ -85,7 +85,11 @@ def gemini_generate_image(prompt: str, aspect: str = "1:1", resolution: str = "1
         for part in parts:
             inline = part.get("inlineData") or part.get("inline_data")
             if inline and "data" in inline:
-                STAGES["generated"].write_bytes(base64.b64decode(inline["data"]))
+                from PIL import Image
+                import io
+                img_bytes = base64.b64decode(inline["data"])
+                img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+                img.save(STAGES["generated"], format="PNG")
                 return
     raise RuntimeError("Gemini did not return image data")
 
